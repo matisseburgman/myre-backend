@@ -5,7 +5,6 @@ const router = express.Router();
 // Get random recipe
 router.get('/recipes/random', async (req, res) => {
     try {
-        const foodType = req.query.food_type;
         let query = {};
         
         if (foodType) {
