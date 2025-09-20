@@ -9,7 +9,7 @@ const recipeSchema = new mongoose.Schema({
     image_name: String,
     image_url: String
 }, {
-    collection: 'recipes_v3'
+    collection: 'recipes_v4'
 });
 
 module.exports = mongoose.model('Recipe', recipeSchema); 
