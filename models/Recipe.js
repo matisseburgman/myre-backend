@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 
 const recipeSchema = new mongoose.Schema({
-    "Title": String,
-    "Description": String,
-    "Main Ingredient": String,
-    "IngredientList": [String],
-    "Instructions": [String], 
-    "Sauce": String,
-    "Dietary Restrictions": [String],
-    "Flavor Profile": [String],
-    "Image name": String,
-    "Servings": Number,
-    "Image URL": String
+    title: String,
+    description: String,
+    ingredients: [String],
+    servings: Number,
+    food_type: String,
+    image_name: String,
+    image_url: String
 }, {
     collection: 'recipes_v3'
 });
