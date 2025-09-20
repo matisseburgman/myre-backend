@@ -39,8 +39,7 @@ console.log('PORT:', process.env.PORT || 'Using default (3000)')
 if (process.env.ATLAS_URI) {
     mongoose.connect(process.env.ATLAS_URI, {
         dbName: 'recipesData',
-        serverSelectionTimeoutMS: 30000,
-        bufferMaxEntries: 0
+        serverSelectionTimeoutMS: 30000
     })
     .then(() => {
         console.log('Successfully connected to MongoDB.')
