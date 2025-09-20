@@ -1,19 +1,7 @@
-const express = require('express');
-const Recipe = require('./models/Recipe');
-const router = express.Router();
-
-// Get random recipe
 router.get('/recipes/random', async (req, res) => {
     try {
-        let query = {};
-        
-        if (foodType) {
-            query['food_type'] = foodType;
-        }
-
         const recipe = await Recipe.aggregate([
-            { $match: query },
-            { $sample: { size: 1 } }
+            { $sample: { size: 1 } } // Geen $match nodig voor alle recepten
         ]);
         
         if (recipe.length > 0) {
@@ -26,5 +14,3 @@ router.get('/recipes/random', async (req, res) => {
         res.status(500).json({ message: "Error fetching random recipe" });
     }
 });
-
-module.exports = router;
