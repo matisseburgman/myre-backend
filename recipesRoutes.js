@@ -4,9 +4,22 @@ const router = express.Router();
 
 router.get('/recipes/random', async (req, res) => {
     try {
-        const recipe = await Recipe.aggregate([
-            { $sample: { size: 1 } }
-        ]);
+        const { food_type } = req.query;
+        
+        // Bouw de aggregation pipeline
+        let pipeline = [];
+        
+        // Voeg filter toe als food_type is opgegeven
+        if (food_type) {
+            pipeline.push({
+                $match: { food_type: food_type }
+            });
+        }
+        
+        // Voeg altijd de random sample toe
+        pipeline.push({ $sample: { size: 1 } });
+        
+        const recipe = await Recipe.aggregate(pipeline);
         
         if (recipe.length > 0) {
             res.json(recipe[0]);
